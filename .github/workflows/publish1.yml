@@ -1,0 +1,67 @@
+name: Publish Shared Library
+
+on:
+  push:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: '@ideascale'
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check Package Version
+        id: version
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+
+          echo "Checking $PACKAGE_NAME@$PACKAGE_VERSION"
+
+          set +e
+          RESULT=$(npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version \
+            --registry=https://npm.pkg.github.com 2>&1)
+          STATUS=$?
+          set -e
+
+          if [ "$STATUS" -eq 0 ]; then
+            echo "Version already published. Skipping."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          elif echo "$RESULT" | grep -q "E404"; then
+            echo "New version detected."
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "$RESULT"
+            echo "Failed to check package version."
+            exit 1
+          fi
+
+      - name: Build Library
+        if: steps.version.outputs.publish == 'true'
+        run: npm run build
+
+      - name: Publish Package
+        if: steps.version.outputs.publish == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
