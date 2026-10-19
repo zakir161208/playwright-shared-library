@@ -22,6 +22,27 @@ provide their own compatible installation. Development dependencies support
 local compilation. The peer range is an initial target based on existing
 projects, not a claim that every version has been integration tested.
 
+## Gradle publishing
+
+Gradle delegates its `build` and `publish` tasks to npm. Run `./gradlew clean
+publish` to retry a failed publish from a clean output directory.
+
+The Gradle process must be able to find `npm`. If an IDE-launched Gradle task
+does not inherit the shell PATH (common with nvm installations), configure the
+npm executable using either a Gradle property or `NPM_COMMAND` environment
+variable:
+
+```properties
+# ~/.gradle/gradle.properties
+npmCommand=/absolute/path/to/npm
+```
+
+For example, the same setting can be passed ad hoc as
+`./gradlew -PnpmCommand=/absolute/path/to/npm publish`. Do not commit a
+machine-specific npm path to this repository. When an absolute npm path is
+configured, the Gradle tasks also add its directory to `PATH`, so npm can find
+the corresponding `node` executable in nvm-based IDE environments.
+
 ## Contents
 
 - `src/pages`: generic BasePage with consumer-defined page identity and URL.
