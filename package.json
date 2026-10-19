@@ -1,5 +1,5 @@
 {
-  "name": "@ideascale/playwright-shared-library",
+  "name": "@zakir161208/playwright-shared-library",
   "version": "1.0.1",
   "type": "commonjs",
   "main": "./dist/index.js",
