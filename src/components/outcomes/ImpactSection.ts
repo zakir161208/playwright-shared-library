@@ -1,5 +1,5 @@
-import {Locator} from '@playwright/test';
-import {AddImpactModal} from '@components/outcomes/AddImpactModal';
+import type { Locator } from '@playwright/test';
+import { AddImpactModal } from '@components/outcomes/AddImpactModal';
 
 export class ImpactSection {
     private readonly card: Locator;

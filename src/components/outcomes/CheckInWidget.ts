@@ -1,7 +1,7 @@
-import {Locator} from '@playwright/test';
-import {AddImpactCheckInModal} from '@components/outcomes/AddImpactCheckInModal';
-import {CloseOutcomeModal} from '@components/outcomes/CloseOutcomeModal';
-import {ImpactCheckInHistoryItem} from '@components/outcomes/ImpactCheckInHistoryItem';
+import type { Locator } from '@playwright/test';
+import { AddImpactCheckInModal } from '@components/outcomes/AddImpactCheckInModal';
+import { CloseOutcomeModal } from '@components/outcomes/CloseOutcomeModal';
+import { ImpactCheckInHistoryItem } from '@components/outcomes/ImpactCheckInHistoryItem';
 
 export class CheckInWidget {
     private readonly widget: Locator;

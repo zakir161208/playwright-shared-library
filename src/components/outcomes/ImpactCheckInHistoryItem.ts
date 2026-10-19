@@ -1,5 +1,5 @@
-import {Locator, Page} from '@playwright/test';
-import {CheckInActionMenu} from '@components/outcomes/CheckInActionMenu';
+import type { Locator, Page } from '@playwright/test';
+import { CheckInActionMenu } from '@components/outcomes/CheckInActionMenu';
 
 export class ImpactCheckInHistoryItem {
     private readonly optionsButton: Locator;

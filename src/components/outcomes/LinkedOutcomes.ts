@@ -1,10 +1,10 @@
-import {Locator, Page} from '@playwright/test';
-import {AddStrategicOutcomeModal} from '@components/outcomes/AddStrategicOutcomeModal';
-import {AddImpactModal} from '@components/outcomes/AddImpactModal';
-import {AddThemeModal} from '@components/outcomes/AddThemeModal';
-import {ConfirmationModal} from '@components/ConfirmationModal';
-import {ImpactSection} from '@components/outcomes/ImpactSection';
-import {CheckInWidget} from '@components/outcomes/CheckInWidget';
+import type { Locator, Page } from '@playwright/test';
+import { ConfirmationModal } from '@components/common/ConfirmationModal';
+import { AddImpactModal } from '@components/outcomes/AddImpactModal';
+import { AddStrategicOutcomeModal } from '@components/outcomes/AddStrategicOutcomeModal';
+import { AddThemeModal } from '@components/outcomes/AddThemeModal';
+import { CheckInWidget } from '@components/outcomes/CheckInWidget';
+import { ImpactSection } from '@components/outcomes/ImpactSection';
 
 type LinkedOutcomeType = 'theme' | 'strategic' | 'impact';
 
@@ -60,6 +60,6 @@ export class LinkedOutcomes {
 
     async removeLinkedOutcome(type: LinkedOutcomeType): Promise<ConfirmationModal> {
         await this.section.getByTestId(`linked-outcome-remove-${type}`).click();
-        return new ConfirmationModal(this.page.locator('.modal .modal-content:visible'));
+        return new ConfirmationModal(this.page);
     }
 }

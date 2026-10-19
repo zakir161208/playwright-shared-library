@@ -1,1 +1,12 @@
 export { ConfirmationModal } from './components/common/ConfirmationModal';
+export { AddImpactCheckInModal } from './components/outcomes/AddImpactCheckInModal';
+export { AddImpactModal } from './components/outcomes/AddImpactModal';
+export { AddStrategicOutcomeModal } from './components/outcomes/AddStrategicOutcomeModal';
+export { AddThemeModal } from './components/outcomes/AddThemeModal';
+export { CheckInActionMenu } from './components/outcomes/CheckInActionMenu';
+export { CheckInWidget } from './components/outcomes/CheckInWidget';
+export { CloseOutcomeModal } from './components/outcomes/CloseOutcomeModal';
+export type { OutcomeVerdict } from './components/outcomes/CloseOutcomeModal';
+export { ImpactCheckInHistoryItem } from './components/outcomes/ImpactCheckInHistoryItem';
+export { ImpactSection } from './components/outcomes/ImpactSection';
+export { LinkedOutcomes } from './components/outcomes/LinkedOutcomes';

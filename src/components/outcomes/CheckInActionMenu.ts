@@ -1,5 +1,5 @@
-import {Locator, Page} from '@playwright/test';
-import {ConfirmationModal} from '@components/ConfirmationModal';
+import type { Locator, Page } from '@playwright/test';
+import { ConfirmationModal } from '@components/common/ConfirmationModal';
 
 export class CheckInActionMenu {
     private readonly deleteButton: Locator;
@@ -15,6 +15,6 @@ export class CheckInActionMenu {
     async clickDelete(): Promise<ConfirmationModal> {
         await this.deleteButton.click();
 
-        return new ConfirmationModal(this.page.locator('.modal .modal-content:visible'));
+        return new ConfirmationModal(this.page);
     }
 }
