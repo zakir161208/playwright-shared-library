@@ -22,6 +22,20 @@ provide their own compatible installation. Development dependencies support
 local compilation. The peer range is an initial target based on existing
 projects, not a claim that every version has been integration tested.
 
+## GitHub Actions
+
+The **Build and Publish Shared Library** workflow (`.github/workflows/build-and-publish.yml`) runs on pull requests and pushes
+to `develop`, and can also be started manually. The Build job installs dependencies,
+typechecks, builds, and checks the package contents. The Publish job runs only after
+a successful build on `develop` and skips versions already in the registry.
+It then verifies that the expected package version is available on GitHub Packages.
+
+Packages publish as `@zakir161208/playwright-shared-library` to GitHub Packages,
+linked to `zakir161208/playwright-shared-library`, using the workflow's
+`GITHUB_TOKEN`. Before publishing an update, bump the package version and commit
+both `package.json` and `package-lock.json` (for example, `npm version patch
+--no-git-tag-version`). Publishing runs the `prepublishOnly` build script.
+
 ## Gradle publishing
 
 Gradle delegates its `build` and `publish` tasks to npm. Run `./gradlew clean

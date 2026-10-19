@@ -27,7 +27,11 @@
     "prepare": "npm run build"
   },
   "keywords": [],
-  "author": "ideascale",
+  "author": "zakir161208",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakir161208/playwright-shared-library.git"
+  },
   "license": "ISC",
   "description": "Shared Playwright utilities for QA automation projects.",
   "peerDependencies": {
