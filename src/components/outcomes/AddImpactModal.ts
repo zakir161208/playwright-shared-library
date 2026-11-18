@@ -60,3 +60,4 @@ export class AddImpactModal {
         await this.modal.getByTestId('submit-button').click();
     }
 }
+
